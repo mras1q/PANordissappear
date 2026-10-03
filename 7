@@ -1,0 +1,19 @@
+#include <iostream>
+
+int main() {
+    double mass = 10000.0, t = 70000.0, d = 62000.0; 
+
+    
+    double ac = (t - d) / mass; 
+    std::cout << "Ускорение: " << ac << " м/с2\n";
+
+    
+    if (ac > 0.5) {
+        std::cout << "набор высоты\n";
+    } else if (ac >= 0.0 && ac <= 0.5) {
+        std::cout << "горизонтальный полет\n";
+    } else {
+        std::cout << "снижение\n";
+    }
+    return 0;
+}
