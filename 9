@@ -1,0 +1,37 @@
+#include <iostream>
+#include <string>
+
+int main() {
+    int N;
+    std::cout << "Введите количество самолетов N: ";
+    std::cin >> N;
+
+    double ro = 1.225, V = 100.0;
+    std::string leader_name = "";
+    double max_ac = -1e9;
+
+ 
+    for (int i = 0; i < N; ++i) {
+        std::string name;
+        double m, S, t, CL, CD;
+
+        std::cout << "Самолет #" << i + 1 << "\nНазвание: "; std::cin >> name;
+        std::cout << "Масса (кг): "; std::cin >> m;
+        std::cout << "Площадь крыла (м2): "; std::cin >> S;
+        std::cout << "Тяга (Н): "; std::cin >> t;
+        std::cout << "Коэффициент CL: "; std::cin >> CL;
+        std::cout << "Коэффициент CD: "; std::cin >> CD;
+
+        double D = 0.5 * ro * V * V * S * CD;
+        double ax = (t - D) / m;
+
+   
+        if (ax > max_ac) {
+            max_ac = ax;
+            leader_name = name;
+        }
+    }
+
+    std::cout << "\nНаибольшее продольное ускорение имеет: " << leader_name << " (" << max_ac << " м/с2)\n";
+    return 0;
+}
