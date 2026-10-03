@@ -1,0 +1,21 @@
+#include <iostream>
+
+int main() {
+    double S, V, ro, CL;
+
+    
+    std::cout << "Введите площадь крыла S (м²): ";
+    std::cin >> S;
+    std::cout << "Введите скорость полета V (м/с): ";
+    std::cin >> V;
+    std::cout << "Введите плотность воздуха ro (кг/м³): ";
+    std::cin >> ro;
+    std::cout << "Введите коэффициент подъемной силы CL: ";
+    std::cin >> CL;
+
+  
+    double L = 0.5 * ro * V * V * S * CL;
+
+    std::cout << "\nПодъемная сила L = " << L << " Н" << std::endl;
+    return 0;
+}
