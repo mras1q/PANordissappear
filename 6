@@ -1,0 +1,21 @@
+#include <iostream>
+#include <vector>
+
+int main() {
+    double S = 30.0;   
+    double CL = 0.4;   
+
+
+    std::vector<double> V = {100.0, 150.0, 200.0};      
+    std::vector<double> ro = {1.225, 1.112, 0.909}; 
+
+    std::cout << "Шаг\tСкорость\tПлотность\tПодъемная сила\n";
+    
+
+  
+    for (size_t i = 0; i < V.size(); ++i) {
+        double L = 0.5 * ro[i] * V[i] * V[i] * S * CL;
+        std::cout << i + 1 << "\t" << V[i] << "\t\t" << ro[i] << "\t\t" << L << "\n";
+    }
+    return 0;
+}
