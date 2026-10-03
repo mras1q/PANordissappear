@@ -1,0 +1,19 @@
+#include <iostream>
+
+
+double calc(double ro, double V, double S, double CD) {
+    return 0.5 * ro * V * V * S * CD;
+}
+
+int main() {
+    double ro = 1.225;
+    double V = 150.0;   
+    double S = 32.0;    
+    double CD = 0.035;  
+
+   
+    double D = calc(ro, V, S, CD);
+    
+    std::cout << "Аэродинамическое сопротивление D = " << D << " Н" << std::endl;
+    return 0;
+}
