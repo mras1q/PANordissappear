@@ -1,0 +1,29 @@
+#include <iostream>
+#include <vector>
+#include <numeric>
+#include <cmath>
+#include <iomanip>
+
+int main() {
+    double v0 = 50.0, g = 9.8, dt = 1.0;
+    double t_max = std::ceil(2 * v0 / g);
+
+    std::vector<double> velocities;
+    for (double t = 0.0; t <= t_max; t += dt)
+        velocities.push_back(v0 - g * t);
+
+    if (velocities.empty()) {
+        std::cout << "Данных нет\n";
+        return 0;
+    }
+
+    double sum = std::accumulate(velocities.begin(), velocities.end(), 0.0);
+    double avg = sum / velocities.size();
+    std::cout << std::fixed << std::setprecision(3);
+    std::cout << "Среднее по выборке: " << avg << " м/с\n";
+
+    double T = 2 * v0 / g;
+    double integral_avg = v0 - g * T / 2;
+    std::cout << "Интегральное среднее за полёт: " << integral_avg << " м/с\n";
+    return 0;
+}
