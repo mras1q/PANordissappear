@@ -1,0 +1,43 @@
+#include <iostream>
+#include <vector>
+#include <iomanip>
+#include <cmath>
+
+struct Point { double x, y, z; };
+
+int main() {
+    double vx = 30, vy = 20, vz = 40;
+    double dt = 1.0, t_max = 6.0;
+    double g = 9.8;
+    bool with_gravity = false;          //иначе добавим уск св-ого пад-ия
+
+    std::vector<Point> traj;
+    traj.reserve((size_t)(t_max / dt) + 2);
+
+    double x = 0, y = 0, z = 0;
+    for (double t = 0.0; t <= t_max; t += dt) {
+        traj.push_back({x, y, z});
+        x += vx * dt;
+        y += vy * dt;
+        z += vz * dt;
+        if (with_gravity) vz -= g * dt;
+    }
+
+    std::cout << std::setw(8) << "t" << std::setw(12) << "x"
+              << std::setw(12) << "y" << std::setw(12) << "z" << "\n";
+    std::cout << std::string(44, '-') << "\n";
+    for (size_t i = 0; i < traj.size(); ++i) {
+        std::cout << std::fixed << std::setprecision(2)
+                  << std::setw(8) << i * dt
+                  << std::setw(12) << traj[i].x
+                  << std::setw(12) << traj[i].y
+                  << std::setw(12) << traj[i].z << "\n";
+    }
+
+    // Проверка без ускорений: x = vx * t
+    bool ok = true;
+    for (size_t i = 0; i < traj.size(); ++i)
+        if (std::fabs(traj[i].x - 30.0 * i * dt) > 1e-9) ok = false;
+    std::cout << "Проверка x = vx*t: " << (ok ? "OK" : "ОШИБКА") << "\n";
+    return 0;
+}
