@@ -1,0 +1,25 @@
+#include <iostream>
+
+class Gyroscope {
+private:
+    double angularVelocity;
+    bool calibrationRequired;
+
+public:
+    Gyroscope(double av, bool cal) : angularVelocity(av), calibrationRequired(cal) {}
+
+    void calibrate() { calibrationRequired = false; }
+
+    void printStatus() const {
+        std::cout << "Скорость: " << angularVelocity << " °/с"
+                  << " | Калибровка " << (calibrationRequired ? "требуется" : "не требуется") << "\n";
+    }
+};
+
+int main() {
+    Gyroscope g1(120.5, true);
+    g1.printStatus();
+    g1.calibrate();
+    g1.printStatus();
+    return 0;
+}
