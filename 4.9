@@ -1,0 +1,37 @@
+#include <iostream>
+
+class AutonomousControl {
+private:
+    double altitude;
+    double thrust;
+    double targetAltitude;
+
+public:
+    AutonomousControl(double alt, double th, double target)
+        : altitude(alt), thrust(th), targetAltitude(target) {}
+
+    void updateControl() {
+        if (altitude < targetAltitude)
+            thrust += 100;
+        else
+            thrust -= 100;
+    }
+
+    void simulateStep(double dt) {
+        altitude += (thrust / 500.0) * dt;
+    }
+
+    void printStatus() const {
+        std::cout << "Высота: " << altitude << " м, тяга: " << thrust << " Н\n";
+    }
+};
+
+int main() {
+    AutonomousControl ac(0, 2000, 5000);
+    for (int i = 0; i < 5; ++i) {
+        ac.updateControl();
+        ac.simulateStep(0.5);
+        ac.printStatus();
+    }
+    return 0;
+}
